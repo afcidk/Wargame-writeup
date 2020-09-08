@@ -1,0 +1,20 @@
+import subprocess
+import os
+
+argv = ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "", " \n\r", "2130706433", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
+
+stdinr, stdinw = os.pipe()
+stderrr, stderrw = os.pipe()
+
+os.write(stdinw, b'\x00\x0a\x00\xff')
+os.write(stderrw, b'\x00\x0a\x02\xff')
+os.putenv(b'\xde\xad\xbe\xef', b'\xca\xfe\xba\xbe')
+
+with open('\n', 'w') as f:
+    f.write('\x00')
+    f.write('\x00')
+    f.write('\x00')
+    f.write('\x00')
+
+pipe = subprocess.Popen(['./input'] + argv, stdin=stdinr, stderr=stderrr)
+
